@@ -1,0 +1,51 @@
+import numpy as np
+
+class GreedyAgent:
+    """
+    Always picks the destination with the currently lowest load.
+    No consideration for energy or task priority.
+    """
+    def select_action(self, state, mec_servers, n_mec=3):
+        # State features include MEC loads at positions 7 to 7+n_mec
+        mec_loads = state[7 : 7 + n_mec]
+        return int(np.argmin(mec_loads)) + 1   # +1 because 0=local
+
+
+class RoundRobinAgent:
+    """Cycles through destinations regardless of conditions."""
+    def __init__(self, n_actions):
+        self.counter  = 0
+        self.n_actions = n_actions
+
+    def select_action(self, *args, **kwargs):
+        action = self.counter % self.n_actions
+        self.counter += 1
+        return action
+
+
+class StandardDQNAgent:
+    """
+    Standard DQN — same as Dueling DQN but without the value/advantage split.
+    Used to isolate the specific contribution of the dueling architecture.
+    """
+    def __init__(self, state_size, action_size):
+        import torch
+        import torch.nn as nn
+        self.action_size = action_size
+        self.epsilon = 0.01   # Evaluation mode — minimal exploration
+
+        # Single-stream Q-network (no dueling decomposition)
+        self.net = nn.Sequential(
+            nn.Linear(state_size, 128), nn.ReLU(),
+            nn.Linear(128, 128),        nn.ReLU(),
+            nn.Linear(128, 64),         nn.ReLU(),
+            nn.Linear(64, action_size),
+        )
+
+    def select_action(self, state):
+        import torch
+        if np.random.random() < self.epsilon:
+            return np.random.randint(self.action_size)
+        with torch.no_grad():
+            t = torch.FloatTensor(state).unsqueeze(0)
+            return self.net(t).argmax().item()

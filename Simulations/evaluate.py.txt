@@ -1,0 +1,63 @@
+import numpy as np
+import pandas as pd
+import torch
+from simulator import build_environment
+from agent import DuelingDQNAgent
+from baselines import GreedyAgent, RoundRobinAgent, StandardDQNAgent
+
+N_DEVICES = 20; N_MEC = 3; N_TEST_TASKS = 1000
+STATE_SIZE = 7 + N_MEC + N_MEC; ACTION_SIZE = 5; N_SEEDS = 5
+
+def evaluate_agent(agent_name, agent, controller, devices, n_tasks=1000):
+    """Runs an agent for n_tasks and collects all metrics."""
+    results = []
+    for _ in range(n_tasks):
+        device_id = np.random.randint(N_DEVICES)
+        task      = devices[device_id].generate_task()
+        state     = controller.get_global_state(task)
+
+        if agent_name == "Round-Robin":
+            action = agent.select_action()
+        else:
+            action = agent.select_action(state)
+
+        outcome   = controller.compute_outcome(task, action)
+        results.append({
+            "energy":   outcome["energy"],
+            "time_ms":  outcome["time"] * 1000,
+            "violated": outcome["violated"],
+            "priority": task["priority"],
+        })
+    return pd.DataFrame(results)
+
+all_metrics = {name: [] for name in
+               ["Dueling DQN", "Standard DQN", "Greedy", "Round-Robin"]}
+
+for seed in range(N_SEEDS):
+    np.random.seed(seed + 100)
+    env, devices, mec_servers, controller = build_environment(N_DEVICES, N_MEC)
+
+    # Load trained Dueling DQN
+    d_agent = DuelingDQNAgent(STATE_SIZE, ACTION_SIZE)
+    d_agent.online_net.load_state_dict(torch.load(f"dueling_dqn_seed{seed}.pt"))
+    d_agent.epsilon = 0.0
+
+    agents = {
+        "Dueling DQN": d_agent,
+        "Greedy":      GreedyAgent(),
+        "Round-Robin": RoundRobinAgent(ACTION_SIZE),
+        "Standard DQN": StandardDQNAgent(STATE_SIZE, ACTION_SIZE),
+    }
+
+    for name, agent in agents.items():
+        df = evaluate_agent(name, agent, controller, devices, N_TEST_TASKS)
+        all_metrics[name].append(df)
+
+# Combine across seeds
+combined = {name: pd.concat(dfs, ignore_index=True)
+            for name, dfs in all_metrics.items()}
+
+for name, df in combined.items():
+    df.to_csv(f"results_{name.replace(' ', '_')}.csv", index=False)
+
+print("Evaluation complete. Results saved.")
