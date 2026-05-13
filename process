@@ -1,0 +1,180 @@
+(iomt_env) seidu@Ubuntu:~/Du-sim/Simulations$ python train.py
+Seed 0 | Episode 50/500 | Reward: -3124.9 | ε: 0.010
+Seed 0 | Episode 100/500 | Reward: -3582.9 | ε: 0.010
+Seed 0 | Episode 150/500 | Reward: -3173.9 | ε: 0.010
+Seed 0 | Episode 200/500 | Reward: -3577.6 | ε: 0.010
+Seed 0 | Episode 250/500 | Reward: -3231.1 | ε: 0.010
+Seed 0 | Episode 300/500 | Reward: -3274.1 | ε: 0.010
+Seed 0 | Episode 350/500 | Reward: -3018.4 | ε: 0.010
+Seed 0 | Episode 400/500 | Reward: -3376.1 | ε: 0.010
+Seed 0 | Episode 450/500 | Reward: -3685.0 | ε: 0.010
+Seed 0 | Episode 500/500 | Reward: -3324.3 | ε: 0.010
+Seed 1 | Episode 50/500 | Reward: -3170.1 | ε: 0.010
+Seed 1 | Episode 100/500 | Reward: -3368.8 | ε: 0.010
+Seed 1 | Episode 150/500 | Reward: -3377.8 | ε: 0.010
+Seed 1 | Episode 200/500 | Reward: -3121.0 | ε: 0.010
+Seed 1 | Episode 250/500 | Reward: -3270.9 | ε: 0.010
+Seed 1 | Episode 300/500 | Reward: -3317.2 | ε: 0.010
+Seed 1 | Episode 350/500 | Reward: -3510.7 | ε: 0.010
+Seed 1 | Episode 400/500 | Reward: -2865.4 | ε: 0.010
+Seed 1 | Episode 450/500 | Reward: -3264.8 | ε: 0.010
+Seed 1 | Episode 500/500 | Reward: -3170.5 | ε: 0.010
+Seed 2 | Episode 50/500 | Reward: -2828.6 | ε: 0.010
+Seed 2 | Episode 100/500 | Reward: -3426.2 | ε: 0.010
+Seed 2 | Episode 150/500 | Reward: -3227.6 | ε: 0.010
+Seed 2 | Episode 200/500 | Reward: -3025.7 | ε: 0.010
+Seed 2 | Episode 250/500 | Reward: -3639.9 | ε: 0.010
+Seed 2 | Episode 300/500 | Reward: -2928.2 | ε: 0.010
+Seed 2 | Episode 350/500 | Reward: -3223.7 | ε: 0.010
+Seed 2 | Episode 400/500 | Reward: -3524.4 | ε: 0.010
+Seed 2 | Episode 450/500 | Reward: -3170.2 | ε: 0.010
+Seed 2 | Episode 500/500 | Reward: -3327.9 | ε: 0.010
+Seed 3 | Episode 50/500 | Reward: -3116.5 | ε: 0.010
+Seed 3 | Episode 100/500 | Reward: -3322.1 | ε: 0.010
+Seed 3 | Episode 150/500 | Reward: -3227.0 | ε: 0.010
+Seed 3 | Episode 200/500 | Reward: -2914.3 | ε: 0.010
+Seed 3 | Episode 250/500 | Reward: -2976.2 | ε: 0.010
+Seed 3 | Episode 300/500 | Reward: -2708.6 | ε: 0.010
+Seed 3 | Episode 350/500 | Reward: -2860.2 | ε: 0.010
+Seed 3 | Episode 400/500 | Reward: -3069.2 | ε: 0.010
+Seed 3 | Episode 450/500 | Reward: -3070.6 | ε: 0.010
+Seed 3 | Episode 500/500 | Reward: -3113.7 | ε: 0.010
+Seed 4 | Episode 50/500 | Reward: -3371.7 | ε: 0.010
+Seed 4 | Episode 100/500 | Reward: -3531.4 | ε: 0.010
+Seed 4 | Episode 150/500 | Reward: -3329.1 | ε: 0.010
+Seed 4 | Episode 200/500 | Reward: -3372.8 | ε: 0.010
+Seed 4 | Episode 250/500 | Reward: -2614.4 | ε: 0.010
+Seed 4 | Episode 300/500 | Reward: -3528.2 | ε: 0.010
+Seed 4 | Episode 350/500 | Reward: -2916.5 | ε: 0.010
+Seed 4 | Episode 400/500 | Reward: -3021.3 | ε: 0.010
+Seed 4 | Episode 450/500 | Reward: -3473.2 | ε: 0.010
+Seed 4 | Episode 500/500 | Reward: -3180.1 | ε: 0.010
+Training complete. Convergence data saved.
+(iomt_env) seidu@Ubuntu:~/Du-sim/Simulations$ python evaluate.py
+Traceback (most recent call last):
+  File "/home/seidu/Du-sim/Simulations/evaluate.py", line 53, in <module>
+    df = evaluate_agent(name, agent, controller, devices, N_TEST_TASKS)
+  File "/home/seidu/Du-sim/Simulations/evaluate.py", line 22, in evaluate_agent
+    action = agent.select_action(state)
+TypeError: GreedyAgent.select_action() missing 1 required positional argument: 'mec_servers'
+(iomt_env) seidu@Ubuntu:~/Du-sim/Simulations$ python plot_results.py
+Figure 2 saved.
+Traceback (most recent call last):
+  File "/home/seidu/Du-sim/Simulations/plot_results.py", line 26, in <module>
+    df = pd.read_csv(f"results_{name.replace(' ','_')}.csv")
+  File "/home/seidu/iomt_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/seidu/iomt_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/seidu/iomt_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/seidu/iomt_env/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/seidu/iomt_env/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'results_Dueling_DQN.csv'
+(iomt_env) seidu@Ubuntu:~/Du-sim/Simulations$ python evaluate.py
+
+── Evaluating seed 1/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 0)...
+  Standard DQN seed 0 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0283 J | Avg time: 730.9 ms | Violations: 63.8%
+  Evaluating Standard DQN...
+    Avg energy: 0.0270 J | Avg time: 717.7 ms | Violations: 61.9%
+  Evaluating Greedy...
+    Avg energy: 0.4522 J | Avg time: 1502.1 ms | Violations: 68.3%
+  Evaluating Round-Robin...
+    Avg energy: 0.3527 J | Avg time: 1593.6 ms | Violations: 68.0%
+
+── Evaluating seed 2/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 1)...
+  Standard DQN seed 1 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0307 J | Avg time: 696.3 ms | Violations: 60.4%
+  Evaluating Standard DQN...
+    Avg energy: 0.4632 J | Avg time: 1598.3 ms | Violations: 64.6%
+  Evaluating Greedy...
+    Avg energy: 0.4786 J | Avg time: 1582.1 ms | Violations: 65.3%
+  Evaluating Round-Robin...
+    Avg energy: 0.4104 J | Avg time: 1596.7 ms | Violations: 66.5%
+
+── Evaluating seed 3/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 2)...
+  Standard DQN seed 2 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0245 J | Avg time: 770.1 ms | Violations: 65.2%
+  Evaluating Standard DQN...
+    Avg energy: 0.2085 J | Avg time: 939.4 ms | Violations: 60.9%
+  Evaluating Greedy...
+    Avg energy: 0.3973 J | Avg time: 1450.7 ms | Violations: 66.1%
+  Evaluating Round-Robin...
+    Avg energy: 0.3211 J | Avg time: 1539.9 ms | Violations: 66.2%
+
+── Evaluating seed 4/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 3)...
+  Standard DQN seed 3 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0273 J | Avg time: 750.3 ms | Violations: 61.2%
+  Evaluating Standard DQN...
+    Avg energy: 0.2957 J | Avg time: 1318.9 ms | Violations: 62.0%
+  Evaluating Greedy...
+    Avg energy: 0.4464 J | Avg time: 1586.1 ms | Violations: 67.2%
+  Evaluating Round-Robin...
+    Avg energy: 0.3607 J | Avg time: 1669.0 ms | Violations: 65.0%
+
+── Evaluating seed 5/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 4)...
+  Standard DQN seed 4 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.5139 J | Avg time: 1763.0 ms | Violations: 65.2%
+  Evaluating Standard DQN...
+    Avg energy: 0.5050 J | Avg time: 2020.4 ms | Violations: 66.5%
+  Evaluating Greedy...
+    Avg energy: 0.4968 J | Avg time: 1696.8 ms | Violations: 65.0%
+  Evaluating Round-Robin...
+    Avg energy: 0.4317 J | Avg time: 1692.5 ms | Violations: 64.1%
+
+Saving results...
+  Saved results_Dueling_DQN.csv (5000 rows)
+  Saved results_Standard_DQN.csv (5000 rows)
+  Saved results_Greedy.csv (5000 rows)
+  Saved results_Round-Robin.csv (5000 rows)
+
+Evaluation complete. Run plot_results.py to generate figures.
+(iomt_env) seidu@Ubuntu:~/Du-sim/Simulations$ python plot_results.py
+Figure 2 saved.
+Figure 3 saved.
+Figure 4 saved.
+Figure 5 saved. All figures complete.
+(iomt_env) seidu@Ubuntu:~/Du-sim/Simulations$  

@@ -1,0 +1,210 @@
+(iomt_env) seidu@Ubuntu:~/Du-sim/fr_rd$ python train.py
+Seed 0 | Episode 50/500 | Reward: -73.9 | ε: 0.010
+Seed 0 | Episode 100/500 | Reward: -77.9 | ε: 0.010
+Seed 0 | Episode 150/500 | Reward: -22.6 | ε: 0.010
+Seed 0 | Episode 200/500 | Reward: -19.2 | ε: 0.010
+Seed 0 | Episode 250/500 | Reward: -79.5 | ε: 0.010
+Seed 0 | Episode 300/500 | Reward: -75.9 | ε: 0.010
+Seed 0 | Episode 350/500 | Reward: -18.4 | ε: 0.010
+Seed 0 | Episode 400/500 | Reward: -18.7 | ε: 0.010
+Seed 0 | Episode 450/500 | Reward: -23.0 | ε: 0.010
+Seed 0 | Episode 500/500 | Reward: -22.2 | ε: 0.010
+Seed 1 | Episode 50/500 | Reward: -20.6 | ε: 0.010
+Seed 1 | Episode 100/500 | Reward: -22.3 | ε: 0.010
+Seed 1 | Episode 150/500 | Reward: -20.7 | ε: 0.010
+Seed 1 | Episode 200/500 | Reward: -72.0 | ε: 0.010
+Seed 1 | Episode 250/500 | Reward: -180.7 | ε: 0.010
+Seed 1 | Episode 300/500 | Reward: -19.6 | ε: 0.010
+Seed 1 | Episode 350/500 | Reward: -75.0 | ε: 0.010
+Seed 1 | Episode 400/500 | Reward: -73.1 | ε: 0.010
+Seed 1 | Episode 450/500 | Reward: -74.0 | ε: 0.010
+Seed 1 | Episode 500/500 | Reward: -20.6 | ε: 0.010
+Seed 2 | Episode 50/500 | Reward: -21.0 | ε: 0.010
+Seed 2 | Episode 100/500 | Reward: -78.3 | ε: 0.010
+Seed 2 | Episode 150/500 | Reward: -22.7 | ε: 0.010
+Seed 2 | Episode 200/500 | Reward: -76.3 | ε: 0.010
+Seed 2 | Episode 250/500 | Reward: -23.3 | ε: 0.010
+Seed 2 | Episode 300/500 | Reward: -23.2 | ε: 0.010
+Seed 2 | Episode 350/500 | Reward: -23.7 | ε: 0.010
+Seed 2 | Episode 400/500 | Reward: -77.1 | ε: 0.010
+Seed 2 | Episode 450/500 | Reward: -20.3 | ε: 0.010
+Seed 2 | Episode 500/500 | Reward: -80.2 | ε: 0.010
+Seed 3 | Episode 50/500 | Reward: -21.1 | ε: 0.010
+Seed 3 | Episode 100/500 | Reward: -122.5 | ε: 0.010
+Seed 3 | Episode 150/500 | Reward: -73.8 | ε: 0.010
+Seed 3 | Episode 200/500 | Reward: -17.5 | ε: 0.010
+Seed 3 | Episode 250/500 | Reward: -72.8 | ε: 0.010
+Seed 3 | Episode 300/500 | Reward: -16.1 | ε: 0.010
+Seed 3 | Episode 350/500 | Reward: -18.5 | ε: 0.010
+Seed 3 | Episode 400/500 | Reward: -23.1 | ε: 0.010
+Seed 3 | Episode 450/500 | Reward: -18.5 | ε: 0.010
+Seed 3 | Episode 500/500 | Reward: -20.2 | ε: 0.010
+Seed 4 | Episode 50/500 | Reward: -24.2 | ε: 0.010
+Seed 4 | Episode 100/500 | Reward: -181.8 | ε: 0.010
+Seed 4 | Episode 150/500 | Reward: -133.4 | ε: 0.010
+Seed 4 | Episode 200/500 | Reward: -80.3 | ε: 0.010
+Seed 4 | Episode 250/500 | Reward: -20.4 | ε: 0.010
+Seed 4 | Episode 300/500 | Reward: -75.7 | ε: 0.010
+Seed 4 | Episode 350/500 | Reward: -17.3 | ε: 0.010
+Seed 4 | Episode 400/500 | Reward: -76.9 | ε: 0.010
+Seed 4 | Episode 450/500 | Reward: -75.8 | ε: 0.010
+Seed 4 | Episode 500/500 | Reward: -74.3 | ε: 0.010
+Training complete. Convergence data saved.
+Std DQN Seed 0 | Episode 50 | Reward: -75.1
+Std DQN Seed 0 | Episode 100 | Reward: -20.3
+Std DQN Seed 0 | Episode 150 | Reward: -20.6
+Std DQN Seed 0 | Episode 200 | Reward: -71.8
+Std DQN Seed 0 | Episode 250 | Reward: -20.6
+Std DQN Seed 0 | Episode 300 | Reward: -123.6
+Std DQN Seed 0 | Episode 350 | Reward: -20.4
+Std DQN Seed 0 | Episode 400 | Reward: -75.2
+Std DQN Seed 0 | Episode 450 | Reward: -125.3
+Std DQN Seed 0 | Episode 500 | Reward: -20.0
+Std DQN Seed 1 | Episode 50 | Reward: -75.4
+Std DQN Seed 1 | Episode 100 | Reward: -31.3
+Std DQN Seed 1 | Episode 150 | Reward: -78.2
+Std DQN Seed 1 | Episode 200 | Reward: -21.7
+Std DQN Seed 1 | Episode 250 | Reward: -75.8
+Std DQN Seed 1 | Episode 300 | Reward: -17.0
+Std DQN Seed 1 | Episode 350 | Reward: -26.4
+Std DQN Seed 1 | Episode 400 | Reward: -23.8
+Std DQN Seed 1 | Episode 450 | Reward: -21.7
+Std DQN Seed 1 | Episode 500 | Reward: -20.9
+Std DQN Seed 2 | Episode 50 | Reward: -78.3
+Std DQN Seed 2 | Episode 100 | Reward: -22.4
+Std DQN Seed 2 | Episode 150 | Reward: -21.5
+Std DQN Seed 2 | Episode 200 | Reward: -20.1
+Std DQN Seed 2 | Episode 250 | Reward: -18.2
+Std DQN Seed 2 | Episode 300 | Reward: -74.8
+Std DQN Seed 2 | Episode 350 | Reward: -73.0
+Std DQN Seed 2 | Episode 400 | Reward: -22.3
+Std DQN Seed 2 | Episode 450 | Reward: -21.5
+Std DQN Seed 2 | Episode 500 | Reward: -18.9
+Std DQN Seed 3 | Episode 50 | Reward: -78.2
+Std DQN Seed 3 | Episode 100 | Reward: -24.3
+Std DQN Seed 3 | Episode 150 | Reward: -20.7
+Std DQN Seed 3 | Episode 200 | Reward: -75.6
+Std DQN Seed 3 | Episode 250 | Reward: -128.1
+Std DQN Seed 3 | Episode 300 | Reward: -21.7
+Std DQN Seed 3 | Episode 350 | Reward: -76.8
+Std DQN Seed 3 | Episode 400 | Reward: -76.5
+Std DQN Seed 3 | Episode 450 | Reward: -21.4
+Std DQN Seed 3 | Episode 500 | Reward: -22.0
+Std DQN Seed 4 | Episode 50 | Reward: -134.7
+Std DQN Seed 4 | Episode 100 | Reward: -28.2
+Std DQN Seed 4 | Episode 150 | Reward: -19.0
+Std DQN Seed 4 | Episode 200 | Reward: -21.6
+Std DQN Seed 4 | Episode 250 | Reward: -21.8
+Std DQN Seed 4 | Episode 300 | Reward: -18.5
+Std DQN Seed 4 | Episode 350 | Reward: -22.0
+Std DQN Seed 4 | Episode 400 | Reward: -75.2
+Std DQN Seed 4 | Episode 450 | Reward: -128.4
+Std DQN Seed 4 | Episode 500 | Reward: -178.9
+Standard DQN training complete.
+(iomt_env) seidu@Ubuntu:~/Du-sim/fr_rd$ python evaluate.py
+
+── Evaluating seed 1/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 0)...
+  Standard DQN seed 0 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 0 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0941 J | Avg time: 517.2 ms | Violations: 0.7%
+  Evaluating Standard DQN...
+    Avg energy: 0.0034 J | Avg time: 49.2 ms | Violations: 0.0%
+  Evaluating Greedy...
+    Avg energy: 0.4568 J | Avg time: 1454.6 ms | Violations: 62.6%
+  Evaluating Round-Robin...
+    Avg energy: 0.3493 J | Avg time: 1323.7 ms | Violations: 53.8%
+
+── Evaluating seed 2/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 1)...
+  Standard DQN seed 1 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 1 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0030 J | Avg time: 53.0 ms | Violations: 0.0%
+  Evaluating Standard DQN...
+    Avg energy: 0.0129 J | Avg time: 71.2 ms | Violations: 0.0%
+  Evaluating Greedy...
+    Avg energy: 0.4988 J | Avg time: 1515.0 ms | Violations: 66.4%
+  Evaluating Round-Robin...
+    Avg energy: 0.3948 J | Avg time: 1349.3 ms | Violations: 53.0%
+
+── Evaluating seed 3/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 2)...
+  Standard DQN seed 2 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 2 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.1029 J | Avg time: 376.6 ms | Violations: 0.0%
+  Evaluating Standard DQN...
+    Avg energy: 0.0529 J | Avg time: 215.1 ms | Violations: 0.0%
+  Evaluating Greedy...
+    Avg energy: 0.3859 J | Avg time: 1310.8 ms | Violations: 67.0%
+  Evaluating Round-Robin...
+    Avg energy: 0.2990 J | Avg time: 1218.5 ms | Violations: 51.4%
+
+── Evaluating seed 4/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 3)...
+  Standard DQN seed 3 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 3 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0291 J | Avg time: 178.1 ms | Violations: 0.0%
+  Evaluating Standard DQN...
+    Avg energy: 0.0018 J | Avg time: 49.2 ms | Violations: 0.0%
+  Evaluating Greedy...
+    Avg energy: 0.4315 J | Avg time: 1469.3 ms | Violations: 62.9%
+  Evaluating Round-Robin...
+    Avg energy: 0.3827 J | Avg time: 1452.7 ms | Violations: 51.9%
+
+── Evaluating seed 5/5 ──
+  Loaded Dueling DQN.
+  Training Standard DQN (seed 4)...
+  Standard DQN seed 4 | Episode 100/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 200/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 300/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 400/500 | ε: 0.010
+  Standard DQN seed 4 | Episode 500/500 | ε: 0.010
+  Standard DQN trained.
+  Evaluating Dueling DQN...
+    Avg energy: 0.0929 J | Avg time: 328.4 ms | Violations: 0.0%
+  Evaluating Standard DQN...
+    Avg energy: 0.0035 J | Avg time: 48.7 ms | Violations: 0.0%
+  Evaluating Greedy...
+    Avg energy: 0.5074 J | Avg time: 1639.4 ms | Violations: 64.6%
+  Evaluating Round-Robin...
+    Avg energy: 0.4148 J | Avg time: 1462.5 ms | Violations: 53.0%
+
+Saving results...
+  Saved results_Dueling_DQN.csv (5000 rows)
+  Saved results_Standard_DQN.csv (5000 rows)
+  Saved results_Greedy.csv (5000 rows)
+  Saved results_Round-Robin.csv (5000 rows)
+
+Evaluation complete. Run plot_results.py to generate figures.
+(iomt_env) seidu@Ubuntu:~/Du-sim/fr_rd$ python plot_results.py
+Figure 2 saved.
+Figure 2 saved.
+Figure 3 saved.
+Figure 4 saved.
+Figure 5 saved. All figures complete.
+(iomt_env) seidu@Ubuntu:~/Du-sim/fr_rd$ 
+
