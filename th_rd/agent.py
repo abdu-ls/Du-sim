@@ -1,0 +1,181 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import numpy as np
+import random
+from collections import deque
+
+# ── Dueling DQN Neural Network ──────────────────────────────────────────────
+class DuelingDQN(nn.Module):
+    """
+    The neural network for Dueling DQN.
+
+    It takes the MDP state as input and outputs Q-values for each action.
+    The 'dueling' part means it has two separate output heads:
+      - Value stream V(s): how good is this network state overall?
+      - Advantage stream A(s,a): how much better is each specific action?
+    These are combined using Equation (11) from the paper.
+    """
+    def __init__(self, state_size, action_size):
+        super(DuelingDQN, self).__init__()
+
+        # Shared feature extractor (processes the raw state)
+        self.shared = nn.Sequential(
+            nn.Linear(state_size, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+        )
+
+        # Value stream: outputs a single number V(s)
+        self.value_stream = nn.Sequential(
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, 1),
+        )
+
+        # Advantage stream: outputs one number per action A(s,a)
+        self.advantage_stream = nn.Sequential(
+            nn.Linear(128, 64),
+            nn.ReLU(),
+            nn.Linear(64, action_size),
+        )
+
+    def forward(self, state):
+        features  = self.shared(state)
+        value     = self.value_stream(features)
+        advantage = self.advantage_stream(features)
+        # Combine using Equation (11): subtract mean advantage for identifiability
+        q_values  = value + (advantage - advantage.mean(dim=1, keepdim=True))
+        return q_values
+
+
+# ── Replay Memory ────────────────────────────────────────────────────────────
+class ReplayBuffer:
+    """
+    Stores past experiences (state, action, reward, next_state).
+    The agent learns by randomly sampling from this buffer — this breaks
+    correlations between consecutive experiences and stabilises training.
+    Think of it as a notebook of past decisions the agent reviews at random.
+    """
+    def __init__(self, capacity=10000):
+        self.buffer = deque(maxlen=capacity)
+
+    def push(self, state, action, reward, next_state):
+        self.buffer.append((state, action, reward, next_state))
+
+    def sample(self, batch_size):
+        batch = random.sample(self.buffer, batch_size)
+        states, actions, rewards, next_states = zip(*batch)
+        return (
+            torch.FloatTensor(np.array(states)),
+            torch.LongTensor(actions),
+            torch.FloatTensor(rewards),
+            torch.FloatTensor(np.array(next_states)),
+        )
+
+    def __len__(self):
+        return len(self.buffer)
+
+
+# ── Dueling DQN Agent ────────────────────────────────────────────────────────
+class DuelingDQNAgent:
+    """
+    The RL agent that learns the offloading policy.
+    It uses two networks (online and target) to stabilise training —
+    the online network learns while the target network provides stable
+    reference Q-values. Every 100 steps the target is synced with the online.
+    """
+    def __init__(self, state_size, action_size,
+                 lr=1e-3, gamma=0.95,
+                 eps_start=1.0, eps_end=0.01, eps_decay=0.995,
+                 batch_size=64, target_update=100):
+
+        self.action_size  = action_size
+        self.gamma        = gamma
+        self.epsilon      = eps_start
+        self.eps_end      = eps_end
+        self.eps_decay    = eps_decay
+        self.batch_size   = batch_size
+        self.target_update = target_update
+        self.step_count   = 0
+
+        # Online network: learns every step
+        self.online_net = DuelingDQN(state_size, action_size)
+        # Target network: updated periodically — provides stable training signal
+        self.target_net = DuelingDQN(state_size, action_size)
+        self.target_net.load_state_dict(self.online_net.state_dict())
+        self.target_net.eval()
+
+        self.optimizer = optim.Adam(self.online_net.parameters(), lr=lr)
+        self.memory    = ReplayBuffer(capacity=10000)
+
+    def select_action(self, state):
+        """
+        Epsilon-greedy action selection:
+        - With probability epsilon: explore (pick random action)
+        - Otherwise: exploit (pick the action with highest Q-value)
+        Epsilon starts at 1.0 (pure exploration) and decays toward 0.01.
+        """
+        if np.random.random() < self.epsilon:
+            return np.random.randint(self.action_size)
+        with torch.no_grad():
+            state_tensor = torch.FloatTensor(state).unsqueeze(0)
+            q_values = self.online_net(state_tensor)
+            return q_values.argmax().item()
+
+    def compute_reward(self, outcome, task, alpha=0.6, beta=0.4, lam=50.0):
+    	"""
+    	Normalised reward function.
+    	Each term is scaled to roughly the range [-1, 0] so the agent
+    	can distinguish good decisions from bad ones clearly.
+    	"""
+    def compute_reward(self, outcome, task, alpha=0.6, beta=0.4, lam=50.0):
+    	priority_weight   = 4 - task["priority"]   # 3, 2, or 1
+    	
+    	# Clip time ratio so it stays in [0, 3] range
+    	time_ratio    = min(outcome["time"] / task["deadline"], 3.0)
+    	# Clip energy to [0, 1] range  
+    	energy_ratio  = min(outcome["energy"] / 0.5, 1.0)
+    	
+    	latency_penalty   = alpha * priority_weight * time_ratio
+    	energy_penalty    = beta  * energy_ratio
+    	# Make violation penalty large relative to other terms
+    	violation_penalty = lam   * outcome["violated"]
+    	
+    	reward = -(latency_penalty + energy_penalty + violation_penalty)
+    	return reward
+    
+    def train_step(self):
+        """One step of learning from the replay buffer."""
+        if len(self.memory) < self.batch_size:
+            return None
+
+        states, actions, rewards, next_states = self.memory.sample(self.batch_size)
+
+        # Current Q-values from online network
+        current_q = self.online_net(states).gather(1, actions.unsqueeze(1)).squeeze(1)
+
+        # Double DQN target: online selects action, target evaluates it (Equation 12)
+        with torch.no_grad():
+            best_actions   = self.online_net(next_states).argmax(1)
+            target_q_vals  = self.target_net(next_states)
+            next_q         = target_q_vals.gather(1, best_actions.unsqueeze(1)).squeeze(1)
+            target_q       = rewards + self.gamma * next_q
+
+        loss = nn.MSELoss()(current_q, target_q)
+        self.optimizer.zero_grad()
+        loss.backward()
+        # Gradient clipping prevents excessively large updates
+        nn.utils.clip_grad_norm_(self.online_net.parameters(), max_norm=1.0)
+        self.optimizer.step()
+
+        # Sync target network periodically
+        self.step_count += 1
+        if self.step_count % self.target_update == 0:
+            self.target_net.load_state_dict(self.online_net.state_dict())
+
+        # Decay exploration rate
+        self.epsilon = max(self.eps_end, self.epsilon * self.eps_decay)
+
+        return loss.item()
