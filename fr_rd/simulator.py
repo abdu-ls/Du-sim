@@ -1,7 +1,7 @@
 import simpy
 import numpy as np
 
-# ── Thresholds for priority classification (from your paper Table 1) ──
+# ── Thresholds for priority classification (from the paper Table 1) ──
 THRESHOLDS = {
     "heart_rate":     {"lo": 40,  "hi": 150, "wlo": 45,  "whi": 120},
     "spo2":           {"lo": 90,  "hi": 101, "wlo": 92,  "whi": 95},
