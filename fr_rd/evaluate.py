@@ -5,7 +5,7 @@ from simulator import build_environment
 from agent import DuelingDQNAgent
 from baselines import GreedyAgent, RoundRobinAgent, StandardDQNAgent
 
-# ── Configuration (must match train.py exactly) ──────────────────────────────
+# ── Configuration (matches train.py exactly) ──────────────────────────────
 N_DEVICES    = 20
 N_MEC        = 3
 N_TEST_TASKS = 1000
@@ -28,7 +28,7 @@ def evaluate_agent(agent_name, agent, controller, devices, n_tasks=1000):
         task      = devices[device_id].generate_task()
         state     = controller.get_global_state(task)
 
-        # All agents now share the same call signature: select_action(state)
+        # All agents share the same call signature: select_action(state)
         action = agent.select_action(state)
 
         # Execute the action and observe the outcome
@@ -142,4 +142,4 @@ for name, dfs in all_metrics.items():
     combined.to_csv(filename, index=False)
     print(f"  Saved {filename} ({len(combined)} rows)")
 
-print("\nEvaluation complete. Run plot_results.py to generate figures.")
+print("\nEvaluation complete.")
