@@ -1,0 +1,28 @@
+FIGURE 1 — System Architecture Diagram
+=======================================
+
+This figure must be drawn manually using Draw.io, Lucidchart, or PowerPoint.
+
+Content to include:
+  LAYER 1 (bottom): IoMT Devices
+    - Four device icons: ECG Patch, Smartwatch (SpO2), Glucose Sensor, BP Monitor
+    - Each device shows a battery indicator and WiFi/5G uplink arrow
+    - Label beside each: 'Priority Classifier P_i in {1,2,3}'
+
+  LAYER 2 (middle): SDN-Controlled MEC Layer
+    - Three MEC Server boxes labelled s1, s2, s3
+    - One SDN Controller box in the centre labelled:
+        'SDN Controller'
+        Sub-label: 'Dueling DQN Agent (co-located)'
+    - Arrows:
+        Upward dashed: 'Data flow' from devices to servers
+        Downward solid: 'OpenFlow Rules / WFQ' from controller to switches
+        Bidirectional: 'Telemetry / State s_t' between controller and servers
+
+  LAYER 3 (top): Cloud
+    - One Cloud icon connected to MEC via WAN arrow
+    - Label: 'WAN / 4G-5G backbone'
+
+  Colour scheme: Navy (#0D1B2A) background, Teal (#028090) accents
+  Export as: architecture.pdf or architecture.png
+  Insert in methodology section as Figure 1.
