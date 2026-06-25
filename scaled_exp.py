@@ -1,20 +1,12 @@
 """
-scalability_experiment.py
-=========================
-Runs the IoMT task offloading simulation at N=40 and N=60 devices
-to answer supervisor comment 7 (scalability analysis).
-
-Place this file in the same folder as:
-    simulator.py, agent.py, baselines.py
-
 Run:
-    python scalability_experiment.py
+    python scaled_exp.py
 
 Outputs (saved to same folder):
-    scalability_results_N20.csv   (copied from existing results)
+    scalability_results_N20.csv   
     scalability_results_N40.csv
     scalability_results_N60.csv
-    scalability_summary.csv       (one row per N per agent)
+    scalability_summary.csv       
 """
 
 import numpy as np
@@ -32,7 +24,7 @@ N_EPISODES   = 500       # same as original training
 TASKS_PER_EP = 100
 N_TEST_TASKS = 1000
 N_SEEDS      = 5
-DEVICE_COUNTS = [40, 60]   # N=20 already exists; we add 40 and 60
+DEVICE_COUNTS = [40, 60]   # N=20 already exists; add 40 and 60
 
 # State size: 7 device+task features + N_MEC loads + N_MEC SNR = 7+3+3 = 13
 # Action size: local + 3 MEC + cloud = 5
