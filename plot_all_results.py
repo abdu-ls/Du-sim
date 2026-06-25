@@ -1,20 +1,9 @@
 """
 plot_all_results.py
 ===================
-Generates ALL publication figures for the revised proposal.
+Generates ALL figures using the csv results .
 
-Run AFTER scalability_experiment.py has completed.
-
-Figures produced:
-    fig1_architecture.txt       (placeholder note — draw manually)
-    fig2_convergence.pdf        (FIXED — smoothed, separated curves, adjusted scale)
-    fig3_energy.pdf             (bar chart N=20)
-    fig4_latency_cdf.pdf        (CDF N=20)
-    fig5_tier_violations.pdf    (grouped bar N=20)
-    fig6_scalability_energy.pdf (NEW — energy vs N for all algorithms)
-    fig7_scalability_viol.pdf   (NEW — Tier-1 violations vs N for all algorithms)
-
-All figures also saved as PNG for Word document embedding.
+Run AFTER scaled_exp.py has completed.
 """
 
 import pandas as pd
@@ -68,40 +57,18 @@ else:
 print()
 
 # ══════════════════════════════════════════════════════════════════════════════
-# FIGURE 1 — Architecture placeholder note
+# FIGURE 1 — Architecture 
 # ══════════════════════════════════════════════════════════════════════════════
 with open("fig1_architecture_note.txt", "w") as f:
     f.write(
-        "FIGURE 1 — System Architecture Diagram\n"
-        "=======================================\n\n"
-        "This figure must be drawn manually using Draw.io, Lucidchart, or PowerPoint.\n\n"
-        "Content to include:\n"
-        "  LAYER 1 (bottom): IoMT Devices\n"
-        "    - Four device icons: ECG Patch, Smartwatch (SpO2), Glucose Sensor, BP Monitor\n"
-        "    - Each device shows a battery indicator and WiFi/5G uplink arrow\n"
-        "    - Label beside each: 'Priority Classifier P_i in {1,2,3}'\n\n"
-        "  LAYER 2 (middle): SDN-Controlled MEC Layer\n"
-        "    - Three MEC Server boxes labelled s1, s2, s3\n"
-        "    - One SDN Controller box in the centre labelled:\n"
-        "        'SDN Controller'\n"
-        "        Sub-label: 'Dueling DQN Agent (co-located)'\n"
-        "    - Arrows:\n"
-        "        Upward dashed: 'Data flow' from devices to servers\n"
-        "        Downward solid: 'OpenFlow Rules / WFQ' from controller to switches\n"
-        "        Bidirectional: 'Telemetry / State s_t' between controller and servers\n\n"
-        "  LAYER 3 (top): Cloud\n"
-        "    - One Cloud icon connected to MEC via WAN arrow\n"
-        "    - Label: 'WAN / 4G-5G backbone'\n\n"
-        "  Colour scheme: Navy (#0D1B2A) background, Teal (#028090) accents\n"
-        "  Export as: architecture.pdf or architecture.png\n"
-        "  Insert in methodology section as Figure 1.\n"
+       
     )
 print("  Saved fig1_architecture_note.txt")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# FIGURE 2 — CONVERGENCE (FIXED: smoothed, separated, adjusted scale)
+# FIGURE 2 — CONVERGENCE ( smoothed, separated, adjusted scale)
 # ══════════════════════════════════════════════════════════════════════════════
-print("Generating Figure 2: Convergence (fixed)...")
+print("Generating Figure 2: Convergence ...")
 
 def smooth(series, w=25):
     """Rolling mean to reveal the underlying trend."""
@@ -149,7 +116,7 @@ ax.annotate("Rapid convergence\n(within ~20 episodes)",
             fontsize=9, color="dimgray",
             arrowprops=dict(arrowstyle="->", color="dimgray", lw=1.0))
 
-# ── Key fix: adjust y-axis to separate curves clearly ──────────────────────
+# ──  adjust y-axis to separate curves clearly ──────────────────────
 y_min = min(float(cd_plot["mean"].min()), float(cs_plot["mean"].min()))
 y_max = 50
 ax.set_ylim(y_min * 0.15, y_max)   # widen bottom, cap top above 0
@@ -287,10 +254,10 @@ else:
     print("  Skipping Figures 6 and 7 (scalability_summary.csv not found)")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PRINT DATA TABLES for each figure (for Word document tables)
+# PRINT DATA TABLES for each figure 
 # ══════════════════════════════════════════════════════════════════════════════
 print("\n" + "="*65)
-print("  DATA TABLES — copy these into your Word document")
+print("  DATA TABLES ")
 print("="*65)
 
 print("\n--- Table for Figure 3 (Energy, N=20) ---")
@@ -326,4 +293,4 @@ if has_scale:
     cols = ["N_devices","Algorithm","Avg_Energy_J","Avg_Time_ms","Viol_Overall_pct","Viol_T1_pct"]
     print(scale_df[cols].to_string(index=False, float_format="%.3f"))
 
-print("\nAll done. Check your folder for fig2–fig7 PDF and PNG files.")
+print("\nAll done. Check folder for fig2–fig7 PDF and PNG files.")
