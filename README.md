@@ -1,7 +1,10 @@
 ********** prerequisite ************
 
 # Step 1: Create an isolated workspace so nothing conflicts
+sudo apt install python3.10-venv
+
 python3.10 -m venv iomt_env
+
 source iomt_env/bin/activate
 
 # Step 2: Upgrade pip (the package installer) first
